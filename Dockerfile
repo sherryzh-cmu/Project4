@@ -1,5 +1,8 @@
-# Use a Linix image with Tomcat 10
-FROM tomcat:10.1.0-M5-jdk16-openjdk-slim-bullseye
+# Use Tomcat 9 (compatible with javax.servlet / JSP / JSTL)
+FROM tomcat:9.0-jdk8
 
-# Copy in our ROOT.war to the right place in the container
-COPY ROOT.war /usr/local/tomcat/webapps/
+# Remove default ROOT app
+RUN rm -rf /usr/local/tomcat/webapps/ROOT
+
+# Copy your ROOT.war into Tomcat
+COPY ROOT.war /usr/local/tomcat/webapps/ROOT.war
